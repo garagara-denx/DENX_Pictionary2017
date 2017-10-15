@@ -19,19 +19,10 @@
       </div>
       <button type="submit" class="btn btn-primary">送信</button>
     </form>
-    <div id="chatLogs"></div>
   </div>
 
   <script type="text/javascript">
     var socket = io.connect();
-
-    socket.on("server_to_client", function(data) {
-      appendMsg(data.value)
-    });
-
-    function appendMsg(text) {
-      $("#chatLogs").append("<div>" + text + "</div>");
-    }
 
     $("form").submit(function(e) {
       var message = $("#msgForm").val();
