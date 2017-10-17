@@ -2,14 +2,12 @@ var http = require('http');
 var socketio = require('socket.io');
 var fs = require('fs');
 
-var answerText = ""
-
 // Client側のHTTPサーバーを構築
 var clientServer = http.createServer(function(req, res) {
   res.writeHead(200, {
     'Content-Type': 'text/html'
   });
-  res.end(fs.readFileSync(__dirname + '/index.html', 'utf-8'));
+  res.end(fs.readFileSync(__dirname + '/client.html', 'utf-8'));
 }).listen(3000);
 
 // Host側のHTTPサーバーを構築
