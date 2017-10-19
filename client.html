@@ -11,26 +11,37 @@
 
 <body>
   <div class="container">
-    <h1>WebSocket-Chat</h1>
+    <h1>DENX-Pictionary2017</h1>
     <form class="form-inline">
       <div class="form-group">
+        <label for="nameForm">名前：</label>
+        <input type="text" class="form-control" id="nameForm">
         <label for="msgForm">メッセージ：</label>
         <input type="text" class="form-control" id="msgForm">
       </div>
       <button type="submit" class="btn btn-primary">送信</button>
     </form>
+    <br>
+    <p id="alertText"></p>
   </div>
 
   <script type="text/javascript">
     var socket = io.connect();
 
     $("form").submit(function(e) {
-      var message = $("#msgForm").val();
-      $("#msgForm").val('');
-      socket.emit("client_to_server", {
-        value: message
-      });
-      e.preventDefault();
+      if ($("#msgForm").val() == "") {
+        var text = "メッセージを入力してね";
+        $("#alertText").text(text);
+        e.preventDefault();
+      } else {
+        $("#alertText").text("");
+        var message = $("#msgForm").val() + " [" + $("#nameForm").val() + "]";
+        socket.emit("client_to_server", {
+          value: message
+        });
+        $("#msgForm").val('');
+        e.preventDefault();
+      }
     });
   </script>
 </body>
