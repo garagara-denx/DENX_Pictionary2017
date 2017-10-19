@@ -1,5 +1,5 @@
-var clientPort = 3000;
-var hostPort = 3100;
+var clientPort = 3001;
+var hostPort = 3002;
 var http = require('http');
 var socketio = require('socket.io');
 var fs = require('fs');
