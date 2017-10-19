@@ -1,3 +1,5 @@
+var clientPort = 3000;
+var hostPort = 3100;
 var http = require('http');
 var socketio = require('socket.io');
 var fs = require('fs');
@@ -8,7 +10,7 @@ var clientServer = http.createServer(function(req, res) {
     'Content-Type': 'text/html'
   });
   res.end(fs.readFileSync(__dirname + '/client.html', 'utf-8'));
-}).listen(3000);
+}).listen(clientPort);
 
 // Host側のHTTPサーバーを構築
 var hostServer = http.createServer(function(req, res) {
@@ -16,7 +18,7 @@ var hostServer = http.createServer(function(req, res) {
     'Content-Type': 'text/html'
   });
   res.end(fs.readFileSync(__dirname + '/host.html', 'utf-8'));
-}).listen(3100);
+}).listen(hostPort);
 
 // それぞれのHTTPサーバにsocketを紐付け
 var clientIO = socketio.listen(clientServer);
